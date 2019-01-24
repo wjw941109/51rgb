@@ -1,0 +1,40 @@
+*{margin: 0;padding: 0;font-size: 14px;}
+.headertext{width: 1200px;margin: 0 auto}
+.headertext h2{margin:30px auto;font-weight: normal;font-size: 28px;}
+
+.containerbg{background: #f5f5f5;padding-top: 38px;padding-bottom: 38px;}
+.containerbg .main{width: 1200px;background:#fff;margin: 0 auto;}
+.main .main-header{height: 70px;line-height: 70px;display: flex;}
+.main .main-header .check_all{width: 110px;}
+.check_all .checkbox{position: relative;width: 20px;height: 20px;float: left;margin:25px 10px auto 25px;}
+.check_all .checkbox label{position: absolute;top: 0;bottom: 0;left: 0;right: 0;border: 1px solid #e0e0e0;cursor: pointer;}
+.check_all .checkbox label>i{position: absolute;top: 0;bottom: 0;left: 0;right: 0;width: 16px;height: 16px;font-size: 16px;margin: auto;display: none;}
+.check_all .checkbox input{position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: -1;}
+.checkbox .checked{background-color: #ff6700;border: 1px solid #ff6700;}
+.checkbox .checked i{color: #fff;}
+
+.main .main-header .commodity-img{width: 120px;}
+.main .main-header .commodity{flex: 1}
+.main .main-header .unit_price{width: 75px;padding-right: 84px;}
+.main .main-header .number{width: 150px;text-align: center;}
+.main .main-header .subtotal{width:120px;text-align: center; }
+.main .main-header .operation{width: 120px;}
+
+.body-list{height: 86px;display: flex;line-height: 86px;margin: 15px auto;border-top: 1px solid #e0e0e0;}
+.body-list .check_all{width: 110px;}
+.body-list .commodity-img{width: 120px;}
+.body-list .commodity-img img{width: 80px;height: 80px;}
+.body-list .commodity{flex: 1}
+.body-list .unit_price{width: 75px;padding-right: 84px;}
+.body-list .number{width: 150px;overflow: hidden;line-height: 38px;text-align: center;height: 38px;border: 1px solid #e0e0e0;margin-top: 24px;}
+.body-list .number a{float: left;width: 38px;height: 38px;text-decoration: none;color: #000;font-size: 18px;}
+.body-list .number input{width: 72px;height: 38px;float: left;border: 0;text-align: center;}
+.body-list .subtotal{width:120px;text-align: center;}
+.body-list .operation{width: 120px;}
+
+.main-footer{height: 50px;line-height: 50px;margin-top: 20px;box-shadow: 0 -20px 0 0 #f0f0f0;text-align: right;}
+.main-footer .main-footer-left{float: left;}
+.main-footer .main-footer-left a{text-decoration: none;margin-left: 32px;color: #757575}
+.main-footer .total-price{color: #ff6700}
+.main-footer .total-price em{font-size: 30px;    font-style: normal;}
+.main-footer .main-submit{width: 202px;height: 50px;background:#ff6700;border: none;margin-left: 20px;color: #fff;font-size: 18px;cursor: pointer;float: right;}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+    	<table border="1">
+    		<caption>购物车</caption>
+    		<thead>
+    			<tr>
+    				<th><input @change="checkall" type="checkbox" name="" v-model="all"></th>
+    				<th>商品名称</th>
+    				<th>价格</th>
+    				<th>数量</th>
+    				<th>小计</th>
+    				<th>操作</th>
+    			</tr>
+    		</thead>
+    		<tbody>
+    			<tr v-for="(item,index) in list" :key="item.id">
+    				<td><input @change="controlall" type="checkbox" name="" v-model="item.checked"></td>
+    				<td>{{item.title}}</td>
+    				<td>{{item.price}}元</td>
+    				<td>
+    					<a @click="subnum(index)" href="javascript:viod(0)">-</a>
+    					<input type="text" name="" :value="item.num" style="width: 50px;">
+    					<a @click="addnum(index)" href="javascript:viod(0)">+</a>
+    				</td>
+    				<td>{{item.num*item.price}}元</td>
+    				<td><a @click="del(index)" href="javascript:viod(0)">删除</a></td>
+    			</tr>
+    		</tbody>
+    	</table>
+    	<h3>总价:{{total}}</h3>
+    </div>
+    <script type="text/javascript">
+    	var app = new Vue({
+    		el:"#app",
+    		data:{
+    			list:[
+    			{
+    				id:"001",
+    				title:"苹果",
+    				price:2.5,
+    				num:3,
+    				limit:10,
+    				checked:false
+    			},
+    			{
+    				id:"002",
+    				title:"梨",
+    				price:5,
+    				num:6,
+    				limit:10,
+    				checked:false
+    			},
+    			{
+    				id:"003",
+    				title:"香蕉",
+    				price:7,
+    				num:5,
+    				limit:5,
+    				checked:false
+    			}
+    			],
+    			all:false
+    		},
+    		computed:{
+    			total:function() {
+    				let total = 0;
+    				this.list.forEach(value=>{
+    					if (value.checked==true) {
+    						total += value.num*value.price
+    					}
+    				});
+    				return total;
+    			}
+    		},
+    		methods:{
+    			checkall:function(){
+    				if (this.all==true) {
+    					this.list.forEach(value=>{
+    						value.checked = true
+    					})
+    				}else{
+    					this.list.forEach(value=>{
+    						value.checked = false
+    					})
+    				}
+    			},
+    			controlall:function(){
+    				let flag = true;
+    				this.list.forEach(value=>{
+    					if (value.checked == false) {
+    						flag = false;
+    					}
+    				})
+    				this.all=flag;
+    			},
+    			subnum:function(index){
+    				if (this.list[index].num>1) {
+    					this.list[index].num = this.list[index].num-1;
+    				}
+    			},
+    			addnum:function(index){
+    				if(this.list[index].num<this.list[index].limit){
+    					this.list[index].num=this.list[index].num+1
+    				}
+    			},
+    			del:function(index){
+    				this.list.splice(index,1)
+    			}
+    		}
+    	})
+    </script>
+</body>
+</html>

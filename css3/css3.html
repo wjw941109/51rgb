@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3动画效果</title>
+	<style type="text/css">
+	/*-ms-:对ie兼容
+	-webit-:对谷歌兼容
+	-moz:对火狐兼容*/
+	    *{margin: 0;padding: 0}
+	    body{
+	    	height: 1900px;
+	    	background: #3333332b;
+	    }
+	    .content{
+	    	width: 1200px;
+	    	height: 20px;
+	    	margin: 15px auto 0;
+	    }
+	    /*轮播图*/
+	    .sowing-map{margin:130px auto 45px;width: 1200px;height: 280px;position: relative;overflow: hidden;}
+	    .sowing-map>ul{width:3600px;height: 280px;list-style: none;position: absolute;left: 0;top: 0;}
+	    .sowing-map>ul>li{float: left;width:1200px;height: 280px;}
+	    .sowing-map img{width: 1200px;height: 280px;}
+	    .focus{width: 1200px;height:25px;position: absolute;bottom: 12px;}
+	    .focus ul{margin: 0 auto;width: 105px;height: 25px;list-style: none;}
+	    .focus li{float: left;width:25px;height: 25px;margin-right:10px;border-radius: 45px;background: #ccc;}
+	    .focus ul li.active{background: #666;}
+	    /*内容图片*/
+	    .image{
+	    	margin:50px auto 45px; 
+	    	width: 1200px; 
+	    	height: 600px;
+	    }
+	    .right-top img{
+			width: 280px;
+			height: 280px;
+		}
+	    .focusul,.right-top,.right-top1{
+	    	list-style: none;
+	    }
+	    .right-top li{
+	    	float: left;
+	    	margin-right: 16px;
+	    	margin-bottom: 20px;
+	    	transition: transform 1s;
+	    }
+	    .right-top li:first-child{
+	    	margin-left: 16px;
+	    }
+	    .right-top li:nth-child(5){
+	    	margin-left: 16px;
+	    }
+	    /*鼠标向X轴左边移动*/
+	    .right-top li:hover{
+	    	transform: translate(-20px,0);
+	    }
+	    /*鼠标向X轴左边Y轴下面移动*/
+	    .right-top li:nth-child(2):hover{
+	    	transform: translate(-20px,20px);
+	    	
+	    }
+	    /*鼠标向Y轴上面移动*/
+	    .right-top li:nth-child(3):hover{
+	    	transform: translate(0,-20px);
+	    	/*transform: rotateZ(360deg);*/
+	    }
+	    /*鼠标向X轴右边Y轴下面移动*/
+	    .right-top li:nth-child(4):hover{
+	    	transform: translate(20px,20px);
+	    }
+	    /*鼠标向X轴旋转45°*/
+	    .right-top li:nth-child(5):hover{
+	    	transform: rotateX(45deg);
+	    }
+	    /*鼠标向Y轴旋转45°*/
+	    .right-top li:nth-child(6):hover{
+	    	transform: rotateY(45deg);
+	    }
+	    /*鼠标向Z轴旋转360°*/
+	    .right-top li:nth-child(7):hover{
+	    	transform: rotateZ(360deg);
+	    }
+	     .right-top li:last-child:hover{
+	    	transform: scale(1.3);
+	    }
+		
+		 /*第二个内容图片*/
+	    .image1{
+	    	margin: auto; 
+	    	width: 1200px;
+	    	height: 373px;
+	    }
+	    .right-top1 img{
+	    	width: 280px;
+			height: 373px;
+	    }
+	    .right-top1 li{
+	    	float: left;
+	    	width: 280px;
+			height: 400px;
+	    	margin-right: 16px;
+	    	transition: transform 1s,width 1s, height 1s;
+	    }
+	    .right-top1 li:first-child{
+	    	margin-left: 16px;
+	    }   
+	    
+	</style>
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-9"></div>
+	</div>
+	<div class="content">
+		<h2><marquee scrollamount="9" id="dong">韦静雯很棒</marquee></h2>
+		请输入数字<input type="text" name="" id="shuzi">
+		<button type="button" onclick="control()">点我控制时速</button>
+		<hr style="margin-top: 5px">
+		<p id="jing">韦静雯聪明漂亮可爱</p>
+		<button type="button" onclick="btn()" >点击我变文字</button>
+	</div>
+	<div class="sowing-map">
+		<ul class="map_img">
+			<li><img src="image/xuanimg1.jpg"></li>
+			<li><img src="image/xuanimg2.jpg"></li>
+			<li><img src="image/xuanimg3.jpg"></li>
+		</ul>
+		<div class="focus">
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>	
+	<div class="image">
+		<ul class="right-top">
+			<li><img src="image/1.jpg"></li>
+			<li><img src="image/22.jpg"></li>
+			<li><img src="image/33.jpg"></li>
+			<li><img src="image/44.jpg"></li>
+			<li><img src="image/55.jpg"></li>
+			<li><img src="image/66.jpg"></li>
+			<li><img src="image/77.jpg"></li>
+			<li><img src="image/88.jpg"></li>
+		</ul>
+	</div>
+	<div class="image1">
+		<ul class="right-top1">
+			<li><img src="image/1.jpg" id="changeimage">
+				<button type="button" onclick="change()">点我下一张</button>
+
+			</li>
+			<li>
+				<img src="image/2.jpg" id="imgsize">
+				请输入数字<input type="text" id="size">
+				<button type="button" onclick="button()">输入数字后点我改变图片大小</button>
+				<button type="button" onclick="changewidth()">点我加宽10</button>
+				<button type="button" onclick="changeheight()">点我加高10</button>
+			</li>
+			<li><img src="image/3.jpg"></li>
+			<li><img src="image/4.jpg"></li>
+		</ul>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>	
+	<script type="text/javascript">
+		// 控制题目速度
+		function control(){
+			shuzi = document.getElementById("shuzi").value;
+			dong = document.getElementById("dong");
+			if (shuzi==""||isNaN(shuzi)) {
+				dong.innerText="输入格式不对，不能为空，只能输入数字"
+				dong.style.color="red"
+			}else{
+				// 不要if语句可以直接写下面这两句话
+				dong.setAttribute("scrollamount",shuzi);
+				dong.innerText="韦静雯很棒用了"+shuzi+"时速"
+			}
+		}
+		// 改变p的内容且加边框
+		function btn() {
+			var a = document.getElementById("jing");
+			a.innerHTML="占浪是个大帅哥";
+			a.style.border = "1px solid red";
+			a.style.background = "pink";
+		}
+		// 轮播图
+		$(function(){
+			$(".focus li").click(function(){
+				var $x =$(this).index();
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".sowing-map>ul>li").hide().eq($x).fadeIn();
+			})
+			// setInterval与setTimeout区别
+			setInterval(function(){
+                var $bot=$(".focus ul li");
+                var $bot_length=$bot.length;
+                var $bot_active=$(".focus ul li.active");
+                var $bot_active_index=$bot.index($bot_active);
+                if($bot_active_index+1==$bot_length){
+                    $bot.eq(0).click();
+                }else{
+                    $(".focus .map_img li.active").next().click();
+                }
+            },2000)
+		})
+		// 图片切换
+		function change(){
+			var x = document.getElementById("changeimage");
+			if (x.src.match("1.jpg")) {
+				x.src="image/5.jpg"
+			}else{
+				x.src="image/1.jpg"
+			}
+		}
+		// 改变图片大小
+		function button(){
+			var size=document.getElementById("size").value;
+			console.log(size);
+			var imgsize=document.getElementById("imgsize");
+			console.log(imgsize);
+			imgsize.setAttribute("width",size);
+			imgsize.setAttribute("height",size);
+		}
+	</script>		
+</body>
+</html>

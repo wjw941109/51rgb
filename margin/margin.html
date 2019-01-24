@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	*{margin: 0;padding: 0}
+		.top{height:500px;}
+		.box{float: left;width: 200px;height:200px;background: pink;overflow: auto;resize: both;margin-right: 20px;}
+		.box1{float: left;width: 200px;height:200px;margin-right: 20px;background: pink;overflow: scroll;}
+		.box2{float: left;width: 200px;height:200px;background: pink;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;margin-right: 20px;}
+		.box3{float: left;width: 200px;margin-right: 20px;overflow: hidden;}
+		.son{float: left;width: 100px;background: pink;margin-bottom: -300px;padding-bottom: 300px;}
+		.son1{float: left;width: 100px;background: greenyellow;margin-bottom: -300px;padding-bottom: 300px;}
+
+		.content{float: left;width: 500px;height:500px;background: pink;margin-right: 20px;}
+		.content img{float: left;margin-right: 25px;margin-bottom: 15px;}
+		.content p{text-align: justify;margin-right: 15px;}
+		.content1{float: right;width: 500px;background: pink;}
+		.content1 img{float: left;margin-right: 25px;}
+		.content1 p{overflow: hidden;margin-right: 16px;}
+
+		.top1{width: 1200px;margin: 15px auto;display: flex;}
+		.f1{height: 100px;background: #eee;flex: 1;margin-right: 15px;}
+		.f2{flex: 2;height: 100px;background: #eee;margin-right: 15px;}
+		.f3{height: 100px;background: #eee;flex: 3;margin-right: 15px;}
+	</style>
+</head>
+<body>
+	<div class="top">
+		<div class="box">当尺寸溢出，出现滚动条</div>
+		<div class="box1">
+			<img src="images/11.jpg" width="300px" height="400px">右边底部滚动条右边底部滚动条右边底部滚动条右边底部滚动条右边底部滚动条右边底部滚动条</div>
+		<div class="box2">超出宽度变成三个点超出宽度变成三个点</div>
+		<div class="box3">
+			<div class="son">margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐,margin负值实现两端对齐</div>
+			<div class="son1">后台</div>
+		</div>
+		<div class="content">
+			<img src="images/22.jpg" width="200px" height="300px">
+			<p>1.一花凋零荒芜不了整个春天，一次挫折也荒废不了整个人生。
+			2.路在自己脚下，没有人可以决定你前进的方向。
+			3.生活里80%的痛苦来源于上班，但是我知道，如果不上班，就会有100%的痛苦来源于没钱，所以在上班和没钱，我选上班。
+			4.对不起，失去的就再也回不来了，我有我的高傲</p>
+			5.人生匆匆，讨厌的人就一笑而过，无须怀恨在心，保持一颗童心你会发现：没有解决不了的事，也没有过不去的坎
+			6.不管什么年纪，别辜负最好的自己!把每一句“我不会”都改为“我可以学”，把每一句“我不敢”都改为“我一定行”，尝试总比永远不敢开始要强!
+			7.得不到的，就一笑而过;躲不开的，就勇往直前
+			8.放过自己的唯一方式只有以下九个字：该吃吃，该睡睡，爱谁谁
+		</div>	
+		<div class="content1">
+			<img src="images/33.jpg" width="200px" height="300px">
+			<p>占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯，占浪非常非常爱韦静雯</p>
+		</div>	
+	</div>
+	<div class="top1">
+		<div class="f1">等宽</div>
+		<div class="f2">等宽</div>
+		<div class="f3">等宽</div>
+		<div class="f1">等宽</div>
+	</div>	
+</body>
+</html>

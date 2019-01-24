@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="ejs/ejs.min.js"></script>
+</head>
+<body>
+    <script id="cart" type="text/template">
+    <div class="headertext">
+        <h2>我的购物车</h2>
+    </div>
+    <div class="containerbg">
+        <div class="main">
+            <div class="main-header">
+                <div class="check_all">
+                    <div class="checkbox">
+                        <label for="checkboxid">
+                            <i class="fa fa-check"></i>
+                        </label>
+                        <input type="checkbox" name="" id="checkboxid">
+                    </div>
+                    <span>全选</span>
+                </div>
+                <div class="commodity-img">&nbsp;</div>
+                <div class="commodity">商品名称</div>
+                <div class="unit_price">单价</div>
+                <div class="number">数量</div>
+                <div class="subtotal">小计</div>
+                <div class="operation">操作</div>
+            </div>
+            <div class="main-body">
+                <%if(data.list.length>0){%>
+                    <%data.list.forEach(function(value){%>
+                <div class="body-list">
+                    <div class="check_all">
+                        <div class="checkbox">
+                            <label for="listid<%=value.id%>">
+                                <i class="fa fa-check"></i>
+                            </label>
+                            <input type="checkbox" name="" id="listid<%=value.id%>">
+                        </div>
+                    </div>
+                    <div class="commodity-img"><img src="<%=value.image%>"></div>
+                    <div class="commodity"><%=value.title%></div>
+                    <div class="unit_price"> <span><%=value.price%> </span>元</div>
+                    <div class="number">
+                        <a href="javascript:void(0)" class="number-sub">-</a>
+                        <input type="text" name="" value="<%=value.num%>" class="num-value">
+                        <a href="javascript:void(0)" class="number-add">+</a>
+                        <input class="num-list" type="hidden" name="num_list" value="<%= value.limit %>">
+                    </div>
+                    <div class="subtotal"><span><%=value.price*value.num%></span>元</div>
+                    <div class="operation">删除</div>
+                </div>
+                    <% }) %>
+                <% } %>
+            </div>
+            <div class="main-footer">
+                <div class="main-footer-left">
+                    <a href="">继续购物</a>
+                </div>
+                <span class="total-price">
+                    合计: <em><%=data.total%></em>元
+                </span> 
+                <input class="main-submit" type="submit" value="去结算">
+            </div>
+        </div>
+    </div>
+    </script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        var cart = $("#cart").html();
+        var json = {
+            code:200,
+            data:{
+                list:[
+                    {
+                        id:'001',
+                        title:'知吾煮汤锅 米家定制',
+                        price:99,
+                        num:1,
+                        image:"image/1.jpg",
+                        limit:10
+                    },
+                    {
+                        id:'002',
+                        title:'知吾煮不锈钢炒锅 银白色',
+                        price:349,
+                        num:1,
+                        image:"image/2.jpg",
+                        limit:10
+                    },
+                    {
+                        id:'003',
+                        title:'米家电磁炉',
+                        price:299,
+                        num:1,
+                        image:"image/3.jpg",
+                        limit:10
+                    }
+                ],
+                total:0
+            }
+        };
+        var html = ejs.render(cart, { data: json.data });
+        document.body.innerHTML = html;
+
+        //小计
+        function resetColTotal(obj){
+            let father = obj.parents(".body-list");
+            let num = father.find(".number").children(".num-value").val();
+            let price = father.find(".unit_price").children().text();
+            father.find(".subtotal").children().text(num*price);
+        }
+
+        // 合计
+        function resetTotal(){
+            let total = 0;
+            $.each($(".body-list"),function(key,value){
+                console.log(value)
+                if($(value).find("label").is(".checked")){
+                    let num = $(value).find(".number").children(".num-value").val();
+                    let price = $(value).find(".unit_price").children().text();
+                    total+=num*price;
+                }
+            });
+            $(".total-price").children().text(total);
+        }
+
+        //复选框
+        $(".checkbox input").change(function(){
+            if ($(this).prop("checked")== true) {
+                $(this).prev().addClass("checked").children().show();
+            }else{
+                $(this).prev().removeClass("checked").children().hide();
+            }
+            resetTotal();
+        })
+
+        //购物车全选和全不选
+        $("#checkboxid").change(function(){
+            if ($(this).prop("checked") == true) {
+                $(".checkbox input").prev().addClass("checked").children().show();
+            }else{
+                 $(".checkbox input").prev().removeClass("checked").children().hide();
+            }
+        })
+
+        //购物车商品全部打勾后自动触发全选
+        $(".body-list input:checkbox").change(function(){
+            if ($(".body-list").find(".checked").length==$(".body-list").length) {
+                $("#checkboxid").prev().addClass("checked").children().show();
+            }else{
+                $("#checkboxid").prev().removeClass("checked").children().hide();
+            }
+        })
+
+        //购物车商品添加减少
+        $(".number-add").click(function(){
+            let input = $(this).siblings(".num-value");
+            let limit = parseInt($(this).siblings(".num-list").val());
+            if (parseInt(input.val())>=limit) {
+                alert("超出最大购买限制")
+                input.val(limit);
+            } else {
+                input.val(parseInt(input.val())+1);
+            }
+            resetColTotal(input);
+            resetTotal();
+        })
+
+        $(".number-sub").click(function(){
+            let input = $(this).siblings(".num-value");
+            // let limit = parseInt($(this).siblings(".num-list").val());
+            if (parseInt(input.val())<=1) {
+                alert("至少要购买一件商品")
+                input.val(1);
+            } else {
+                input.val(parseInt(input.val())-1);
+            }
+            resetColTotal(input);
+            resetTotal();
+        })
+
+        $(".operation").click(function(){
+            $(this).parents(".body-list").remove();
+            resetTotal();
+        })
+    })
+    </script>
+</body>
+</html>

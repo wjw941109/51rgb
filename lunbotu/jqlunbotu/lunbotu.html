@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS3动画效果</title>
+	<style type="text/css">
+	/*-ms-:对ie兼容
+	-webit-:对谷歌兼容
+	-moz:对火狐兼容*/
+	    *{margin: 0;padding: 0}
+	    body{
+	    	height: 1900px;
+	    	background: #3333332b;
+	    }
+	    /*轮播图*/
+	    .sowing-map{margin:130px auto 45px;width: 1200px;height: 280px;position: relative;overflow: hidden;}
+	    .sowing-map>ul{width:3600px;height: 280px;list-style: none;position: absolute;left: 0;top: 0;}
+	    .sowing-map>ul>li{float: left;width:1200px;height: 280px;}
+	    .sowing-map img{width: 1200px;height: 280px;}
+	    .arrow{
+	    	/* background: red;*/ 
+    		width: 1200px;
+    		height: 35px;
+    		position: absolute;
+    		top: 150px;
+	    }
+	    .prev {
+            float: left;
+            margin-left: 45px;
+            width: 25px;
+            height: 25px;
+            border: 1px solid #757575;
+            border-right: none;
+            border-top: none;
+            transform: rotate(45deg);
+        }
+        .next {
+    		float: right;
+    		margin-right: 45px;
+    		width: 25px;
+    		height: 25px;
+    		border: 1px solid #757575;
+    		border-left: none;
+    		border-bottom: none;
+    		transform: rotate(45deg);
+		}
+	    .focus{width: 1200px;height:25px;position: absolute;bottom: 12px;}
+	    .focus ul{margin: 0 auto;width: 105px;height: 25px;list-style: none;}
+	    .focus li{float: left;width:25px;height: 25px;margin-right:10px;border-radius: 45px;background: #ccc;}
+	    .focus ul li.active{background: #666;}
+	    
+	</style>
+</head>
+<body>
+	<div class="sowing-map">
+		<ul class="map_img">
+			<li><img src="image/1111.jpg"></li>
+			<li><img src="image/2222.jpg"></li>
+			<li><img src="image/3333.jpg"></li>
+		</ul>
+		<div class="arrow">
+			<div class="prev"></div>
+			<div class="next"></div>
+		</div>
+		<div class="focus">
+			<ul>
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>	
+	<script src="js/jquery-3.3.1.min.js"></script>	
+	<script type="text/javascript">
+		// 轮播图
+		$(function(){
+			$(".next").click(function(){
+				
+			})
+			// 以上是轮播图左右箭头的代码,以下是轮播图小圆点的代码
+			$(".focus li").click(function(){
+				var $x =$(this).index();
+				$(this).addClass("active").siblings().removeClass("active");
+				$(".sowing-map>ul>li").hide().eq($x).fadeIn();
+			})
+			// setInterval与setTimeout区别
+			setInterval(function(){
+                var $bot=$(".focus ul li");
+                var $bot_length=$bot.length;
+                var $bot_active=$(".focus ul li.active");
+                var $bot_active_index=$bot.index($bot_active);
+                if($bot_active_index+1<$bot_length){
+                    $(".focus li.active").next().click();
+                }else{
+                    $bot.eq(0).click();
+                }
+            },2000);
+		})
+	</script>		
+</body>
+</html>

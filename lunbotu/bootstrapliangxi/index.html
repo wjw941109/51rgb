@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+    <title>lunbotu</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <style type="text/css">
+    	html,body,div,ul,li,img{margin: 0;padding: 0}
+    	ul,li{list-style: none;}
+    	.ceshi{height: 350px;overflow: hidden;position: relative;}
+    	ul.focusul{width: 400%;position: absolute;left: 0;top: 0;height: 350px;}
+    	ul.focusul li{width: 25%;float: left;height: 350px;}
+    	ul.focusul li img{width: 100%;height: 100%}
+    	ul.focusRa{width: 140px;height: 25px;position: absolute;bottom: 15px;left: 50%;margin-left: -50px;}
+    	ul.focusRa li{float: left;width: 25px;height: 25px;border-radius: 25px;background: #fff;margin: 0 5px;}
+    	ul.focusRa li.active{background: #333}
+    </style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-12 ceshi">
+			<ul class="focusul">
+				<li><img src="images/1111.jpg"></li>
+				<li><img src="images/2222.jpg"></li>
+				<li><img src="images/3333.jpg"></li>
+				<li><img src="images/2222.jpg"></li>
+			</ul>
+			<ul class="focusRa">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			$(".ceshi ul.focusRa li").click(function(){
+				var $t= $(this);
+				var $t_index = $t.index();
+				$(".ceshi ul.focusRa li").removeClass("active").eq($t_index).addClass("active");
+				$(".ceshi ul.focusul li").hide().eq($t_index).show();
+			})
+			setInterval(function(){
+				var $t_len = $(".ceshi ul.focusRa li").length;
+				var $t_act = $(".ceshi ul.focusRa li.active");
+				var $t_num = $(".ceshi ul.focusRa li").index($t_act);
+				if ($t_num+1<$t_len) {
+					$t_act.next().click();
+				}else{
+					$(".ceshi ul.focusRa li").eq(0).click();
+				}
+			},2000)
+		})
+	</script>
+</body>
+</html>
