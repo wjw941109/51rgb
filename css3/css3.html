@@ -164,7 +164,7 @@
 			<li><img src="image/4.jpg"></li>
 		</ul>
 	</div>
-	<script src="js/jquery-3.3.1.min.js"></script>	
+	<script src="jquery-3.3.1.min.js"></script>	
 	<script type="text/javascript">
 		// 控制题目速度
 		function control(){
@@ -202,7 +202,7 @@
                 if($bot_active_index+1==$bot_length){
                     $bot.eq(0).click();
                 }else{
-                    $(".focus .map_img li.active").next().click();
+                    $(".focus li.active").next().click();
                 }
             },2000)
 		})
@@ -224,6 +224,11 @@
 			imgsize.setAttribute("width",size);
 			imgsize.setAttribute("height",size);
 		}
+
+
+
+		var viewWidth = document.documentElement.clientWidth ||document.body.clientWidth;
+		console.log(viewWidth);
 	</script>		
 </body>
 </html>
